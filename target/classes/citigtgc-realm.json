@@ -1,0 +1,13 @@
+{
+  "realm": "QS_CITIGTGC",
+  "auth-server-url": "http://190.190.1.11:8080/auth/",
+  "ssl-required": "none",
+  "resource": "qs_client",
+  "public-client": false,
+  "credentials": {
+    "secret": "d07d7c4e-d607-4934-a641-e246d23af9e4"
+  },
+  "principal-attribute":"preferred_username",
+  "bearer-only":true,
+  "use-resource-role-mappings":true
+}
