@@ -1,0 +1,13 @@
+{
+  "realm": "QS_CDSOGTG2",
+  "auth-server-url": "http://190.190.70.204:8080/auth/",
+  "ssl-required": "none",
+  "resource": "qs_client",
+  "public-client": false,
+  "credentials": {
+    "secret": "7f8b3b89-3f98-4d15-bfec-1bc4410da9e2"
+  },
+  "principal-attribute":"preferred_username",
+  "bearer-only":true,
+  "use-resource-role-mappings":true
+}

@@ -1,0 +1,13 @@
+{
+  "realm": "QS_AGROGTGC",
+  "auth-server-url": "http://190.190.70.204:8080/auth/",
+  "ssl-required": "none",
+  "resource": "qs_client",
+  "public-client": false,
+  "credentials": {
+    "secret": "fd602ce9-f5c5-4ad2-8f9b-7b0d9d2c7d68"
+  },
+  "principal-attribute":"preferred_username",
+  "bearer-only":true,
+  "use-resource-role-mappings":true
+}

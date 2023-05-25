@@ -1,0 +1,13 @@
+{
+  "realm": "QS_FCOHGTGC",
+  "auth-server-url": "http://190.190.70.204:8080/auth/",
+  "ssl-required": "none",
+  "resource": "qs_client",
+  "public-client": false,
+  "credentials": {
+    "secret": "e0bc4cc3-4b8b-4685-86e0-30b607ee3a9c"
+  },
+  "principal-attribute":"preferred_username",
+  "bearer-only":true,
+  "use-resource-role-mappings":true
+}

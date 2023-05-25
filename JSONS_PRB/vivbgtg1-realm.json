@@ -1,0 +1,13 @@
+{
+  "realm": "QS_VIVBGTG1",
+  "auth-server-url": "http://190.190.70.204:8080/auth/",
+  "ssl-required": "none",
+  "resource": "qs_client",
+  "public-client": false,
+  "credentials": {
+    "secret": "ca6012b6-f8dc-4548-a420-ae4df208c9fa"
+  },
+  "principal-attribute":"preferred_username",
+  "bearer-only":true,
+  "use-resource-role-mappings":true
+}

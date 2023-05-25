@@ -1,0 +1,13 @@
+{
+  "realm": "QS_AMCNGTGT",
+  "auth-server-url": "http://190.190.70.204:8080/auth/",
+  "ssl-required": "none",
+  "resource": "qs_client",
+  "public-client": false,
+  "credentials": {
+    "secret": "96b02ce1-9d0f-415b-8e87-215e77522c43"
+  },
+  "principal-attribute":"preferred_username",
+  "bearer-only":true,
+  "use-resource-role-mappings":true
+}

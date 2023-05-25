@@ -1,0 +1,13 @@
+{
+  "realm": "QS_TRAJGTGC",
+  "auth-server-url": "http://190.190.70.204:8080/auth/",
+  "ssl-required": "none",
+  "resource": "qs_client",
+  "public-client": false,
+  "credentials": {
+    "secret": "60ce449d-2253-4b08-9ed6-ebd9efce2d1a"
+  },
+  "principal-attribute":"preferred_username",
+  "bearer-only":true,
+  "use-resource-role-mappings":true
+}

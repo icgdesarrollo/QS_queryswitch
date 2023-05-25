@@ -1,0 +1,13 @@
+{
+  "realm": "QS_NSOAGTGT",
+  "auth-server-url": "http://190.190.70.204:8080/auth/",
+  "ssl-required": "none",
+  "resource": "qs_client",
+  "public-client": false,
+  "credentials": {
+    "secret": "4f6356b4-eb0a-405d-9565-3077856d2ee4"
+  },
+  "principal-attribute":"preferred_username",
+  "bearer-only":true,
+  "use-resource-role-mappings":true
+}
