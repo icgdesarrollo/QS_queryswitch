@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,8 +22,9 @@ public class QueryController {
     
 	//private final RabbitTemplate rabbitTemplate;
   //  private final Receiver receiver;
-   @Autowired    Producer producer;	  
-	
+    @Autowired Producer producer;	  
+	@Autowired SecurityTools  securityTools;
+
 	@Value("${ICG.logs.loggingapp}")
 	private String loginapp;
 
@@ -57,10 +59,17 @@ public class QueryController {
    Logger logger = LoggerFactory.getLogger(QueryController.class);
    
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/tenant/{tenantid}/valida/queries/v2/", method = RequestMethod.POST)
-    public Object SendQuery(@RequestBody String body) {
+//    @RequestMapping(value = "/tenant/{tenantid}/valida/queries/v2/", method = RequestMethod.POST)
+    @RequestMapping(value = "/valida/queries/v3/", method = RequestMethod.POST)
+	public Object SendQuery(@RequestBody String body,@RequestHeader (name="Authorization") String token) {
     	// body=body.toUpperCase();
     	 //se construye el json para general_log
+		 
+		 String issuer= securityTools.getIssuerFromToken(token);
+		 issuer=issuer.substring(issuer.lastIndexOf("/")+1,issuer.length());
+		 issuer=issuer.replace("QS_","");
+		 logger.info("token issuer is "+ issuer);
+
     	try {
     		 logger.debug("start processing");
         	 logger.info("received message "+ body);
@@ -98,8 +107,14 @@ public class QueryController {
         	 }
         	 
         	 JSONObject jsonbody=new JSONObject(body);
-        	 jsonbody.put("version", "2.0");
-        	 
+        	 jsonbody.put("version", "3.0");
+			 logger.info(jsonbody.toString());
+        	 logger.info("found source "+jsonbody.getString("Source"));
+			 logger.info("found issuer "+issuer);
+			 if(jsonbody.getString("Source").compareTo(issuer)!=0){
+				logger.info("request is forbidden, issuer no match "+issuer+ " - " +jsonbody.getString("Source"));
+				return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+			 }
         	 if(iSync) {
         		 logger.debug("got sync message");
             	 response=producer.produceMsg(jsonbody.toString(),exchange,headername,headervalue);        		 
@@ -144,7 +159,7 @@ public class QueryController {
     		return ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).build();
     	}
     }
-    
+    /*
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/valida/queries/", method = RequestMethod.POST)
     public Object SendQueryv(@RequestBody String body) {
@@ -242,6 +257,7 @@ public class QueryController {
     		return ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).build();
     	}
     }
+	 */
 
     
 	@CrossOrigin(origins = "*")

@@ -1,4 +1,6 @@
-com/icg/QuerySwitch/QuerySwitchApplication.class
-com/icg/QuerySwitch/PathBasedConfigResolver.class
 com/icg/QuerySwitch/QueryController.class
+com/icg/QuerySwitch/SecurityConfig.class
+com/icg/QuerySwitch/QuerySwitchApplication.class
 com/icg/QuerySwitch/Producer.class
+com/icg/QuerySwitch/KeycloakLogoutHandler.class
+com/icg/QuerySwitch/SecurityTools.class
