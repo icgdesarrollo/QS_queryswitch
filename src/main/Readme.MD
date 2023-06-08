@@ -10,4 +10,17 @@ ICG.QS.SYNCMESSAGES: "001" jsa.rabbitmq.exchange: QS_INPUT_H jsa.rabbitmq.header
 
 Nota: el headervaule es el prefijo que indica a que cola debe enviar qs el mensaje, estos mensajes seran consumidos por el rt respectivamente.
 
-Parametrización de parametros de seguridad: keycloak.auth-server-url: 'http://190.190.1.11:8080/auth/' keycloak.bearer-only: 'true' keycloak.credentials.secret: 99b3271b-4c0b-4232-9985-6dc0f38c2b7b keycloak.principal-attribute: preferred_username keycloak.public-client: 'false' keycloak.realm: ValidaCuentas keycloak.resource: ACH_VALIDACION_PROD keycloak.ssl-required: none keycloak.use-resource-role-mappings: 'true' logging.level.org.keycloak: DEBUG
+Parametrización de parametros de seguridad: (nuevos en esta version)
+
+
+spring.security.oauth2.client.registration.keycloak.client-id=qs_client
+spring.security.oauth2.client.registration.keycloak.authorization-grant-type=client_credentials
+spring.security.oauth2.client.registration.keycloak.scope=openid
+spring.security.oauth2.client.provider.keycloak.issuer-uri=http://190.190.70.204:8080/auth/realms/QS_AGROGTGC
+spring.security.oauth2.client.provider.keycloak.user-name-attribute=preferred_username
+spring.security.oauth2.resourceserver.jwt.issuer-uri=http://190.190.70.204:8080/auth/realms/QS_AGROGTGC
+logging.level.root=INFO
+ICG.security.trustedissuers=http://190.190.70.204:8080/auth/realms/QS_AGROGTGC,http://190.190.70.204:8080/auth/realms/QS_INDLGTGC,http://190.190.70.204:8080/auth/realms/QS_AMCNGTGT,http://190.190.70.204:8080/auth/realms/QS_ANTGGTG1,http://190.190.70.204:8080/auth/realms/QS_AZTKGTGC,http://190.190.70.204:8080/auth/realms/QS_BAGUGTGC,http://190.190.70.204:8080/auth/realms/QS_BINMGTGC,http://190.190.70.204:8080/auth/realms/QS_BPRCGTGC,http://190.190.70.204:8080/auth/realms/QS_BRRLGTGC,http://190.190.70.204:8080/auth/realms/QS_CDSOGTG2,http://190.190.70.204:8080/auth/realms/QS_CITIGTGC,http://190.190.70.204:8080/auth/realms/QS_CHNAGTGC,http://190.190.70.204:8080/auth/realms/QS_DIBIGTGC,http://190.190.70.204:8080/auth/realms/QS_FCOHGTGC,http://190.190.70.204:8080/auth/realms/QS_FIVNGTG1,http://190.190.70.204:8080/auth/realms/QS_FSCGGTG1,http://190.190.70.204:8080/auth/realms/QS_GTCOGTGC,http://190.190.70.204:8080/auth/realms/QS_NSOAGTGT,http://190.190.70.204:8080/auth/realms/QS_TRAJGTGC,http://190.190.70.204:8080/auth/realms/QS_VIVBGTG1,http://190.190.70.204:8080/auth/realms/QS_ICGSGTGC
+
+
+Si se desea agregar un realm, unicamente se agrega en ICG.security.trustedissuers. El backend maneja todo lo necesario para entenderlo.
