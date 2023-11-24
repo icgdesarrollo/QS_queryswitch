@@ -52,3 +52,7 @@ Agregar client_scope
 
 
 El CLIENT_SCOPE debe llamarse validacion 
+
+
+
+ICG.QS.timeout se refiere al tiempo de espera en ms por respuesta del siguiente servicio
