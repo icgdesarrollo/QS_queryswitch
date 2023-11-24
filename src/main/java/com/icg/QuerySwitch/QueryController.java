@@ -74,7 +74,7 @@ public class QueryController {
 		long start = 0;
 		try {
 			// long elapsed = 0;
-			elapsed = System.currentTimeMillis();
+			start = System.currentTimeMillis();
 			logger.debug("start processing");
 			logger.info("received message " + body);
 			JSONObject json = new JSONObject();
@@ -131,7 +131,7 @@ public class QueryController {
 				response = jsonResponse.toString();
 			}
 			// mensaje asincrono
-			elapsed = start = System.currentTimeMillis();
+			elapsed = System.currentTimeMillis() - start;
 
 			json = new JSONObject();
 			json.put("mensaje", response);
@@ -152,7 +152,7 @@ public class QueryController {
 			// Object response=producer.produceMsg(body,exchange,headername,headervalue);
 			JSONObject json = new JSONObject();
 			json = new JSONObject();
-			elapsed = start = System.currentTimeMillis();
+			elapsed = System.currentTimeMillis() - start;
 
 			json.put("elapsed", elapsed);
 			json.put("mensaje", "TIMEDOUT " + body);
