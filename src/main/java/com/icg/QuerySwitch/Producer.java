@@ -30,11 +30,11 @@ public class Producer {
 		props.setHeader("SOURCE", json.get("SOURCE").toString());
 		props.setHeader("TYPE", json.get("TYPE").toString());
 		this.template.setReplyTimeout(Long.parseLong(timeout));
-		logger.info("SETTING HEADER DESTINATION" + json.get("DESTINATION").toString());
-		logger.info("SETTING HEADER TYPE" + json.get("TYPE").toString());
-
 		props.setHeader(headername, headervalue);
 		props.setContentType("text");
+
+		logger.info("SETTING HEADER DESTINATION" + json.get("DESTINATION").toString());
+		logger.info("SETTING HEADER TYPE" + json.get("TYPE").toString());
 		return template.convertSendAndReceive(new Message(msg.getBytes(), props));
 
 	}
@@ -48,7 +48,6 @@ public class Producer {
 		// rtrujillo 120421
 		// String hv=headervalue+
 		// json.get("TYPE").toString()+"_"+json.get("DESTINATION").toString().toUpperCase();
-
 		props.setHeader("DESTINATION", json.get("DESTINATION").toString());
 		props.setHeader("SOURCE", json.get("SOURCE").toString());
 		props.setHeader("TYPE", json.get("TYPE").toString());
@@ -59,11 +58,17 @@ public class Producer {
 	}
 
 	public void produceMsgNotRCP(String exchange, String routing, String msg) {
-		this.template.setExchange(exchange);
-		JSONObject json = new JSONObject(msg);
-		this.template.setRoutingKey(routing);
-		this.template.setExchange(exchange);
-		template.convertAndSend(msg.getBytes());
+		// this.template.setExchange(exchange);
 
+		// JSONObject json = new JSONObject(msg);
+
+		// rtrujillo 271123 cambiar los valores para que no se use routing si no
+		// exchange headers por problemas de threading
+		// this.template.setRoutingKey(routing);
+		// this.template.setExchange(exchange);
+
+		template.convertAndSend(exchange, routing, msg.getBytes());
+
+		// template.convertAndSend(msg.getBytes());
 	}
 }

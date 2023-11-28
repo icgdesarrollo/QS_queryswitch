@@ -155,8 +155,8 @@ public class QueryController {
 			elapsed = System.currentTimeMillis() - start;
 
 			json.put("elapsed", elapsed);
-			json.put("mensaje", "TIMEDOUT " + body);
-			json.put("Configuracion", loginapp + "_03");
+			json.put("mensaje", body);
+			json.put("Configuracion", loginapp + "_03_TIMEDOUT");
 			json.put("Descripcion", description);
 			json.put("Sistema", system);
 			json.put("Location", location);
