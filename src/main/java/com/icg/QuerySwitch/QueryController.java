@@ -133,18 +133,21 @@ public class QueryController {
 			// mensaje asincrono
 			elapsed = System.currentTimeMillis() - start;
 
-			json = new JSONObject();
-			json.put("mensaje", response);
-			json.put("elapsed", elapsed);
+			if ((response != null) && (response.toString().length() > 0)) {
+				json = new JSONObject();
+				json.put("mensaje", response);
+				json.put("elapsed", elapsed);
 
-			json.put("Configuracion", loginapp + "_02");
-			json.put("Descripcion", description);
-			json.put("Sistema", system);
-			json.put("Location", location);
-			logger.debug("log response built");
-			producer.produceMsgNotRCP(exchangelogs, routinglogs, json.toString());
-			logger.info("response got " + response.toString());
-			logger.info("returning response " + response.toString());
+				json.put("Configuracion", loginapp + "_02");
+				json.put("Descripcion", description);
+				json.put("Sistema", system);
+				json.put("Location", location);
+				logger.debug("log response built");
+				producer.produceMsgNotRCP(exchangelogs, routinglogs, json.toString());
+				logger.info("response got " + response.toString());
+				logger.info("returning response " + response.toString());
+
+			}
 
 			return response;
 		} catch (Exception ex) {
