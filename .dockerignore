@@ -1,0 +1,10 @@
+# Ignore all files in the root directory
+*
+# Include the src directory
+!src/
+# Include the mnt directory
+!mnt/
+# Include the pom.xml file
+!pom.xml
+# Exclude the target directory and its contents
+target/
